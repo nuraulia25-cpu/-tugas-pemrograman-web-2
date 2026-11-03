@@ -2,7 +2,12 @@
 
     <x-slot:title>
         {{ $title }}
-    </x-slot:title>
+    </x-slot>
+        @if (session("success"))
+            <div class="alert alert-success" role="alert">
+                 {{ session("success") }}
+            </div>
+         @endif
 
     <a class="btn btn-primary my-2 py-2" href="{{ route('apotek.create') }}">Tambah Data Apotek</a>
 
