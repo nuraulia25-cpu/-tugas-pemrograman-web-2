@@ -1,0 +1,9 @@
+<x-app>
+    
+    <x-slot:title>
+        {{ $title }}
+    </x-slot:title>
+
+    <a class="btn btn-primary my-2 py-2" href="{{ route('apotek.create') }}">Tambah Data Apotek</a>
+
+</x-app>
