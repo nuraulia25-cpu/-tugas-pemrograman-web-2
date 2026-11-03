@@ -74,19 +74,45 @@ class ApotekController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Apotek $apotek)
     {
         return view('apotek.edit', [
-            'title' => 'Edit Data Apotek'
+            'title' => 'Edit Data Apotek',
+            'apotek'=> $apotek
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Apotek $apotek)
     {
-        //
+         $validated = $request->validate([
+        'nama_obat' => 'required|min:3|max:255',
+        'kategori' => 'required|in:Tablet,Kapsul,Sirup,Salep,Vitamin',
+        'stok' => 'required|integer|min:0',
+        'harga' => 'required|integer|min:100',
+        'tanggal_expired' => 'required|date',
+    ], [
+        'nama_obat.required' => 'Nama obat wajib di input',
+        'nama_obat.min' => 'Nama obat minimal 3 karakter',
+        'nama_obat.max' => 'Nama obat maksimal 255 karakter',
+        'kategori.required' => 'Kategori wajib dipilih',
+        'kategori.in' => 'Kategori harus Tablet, Kapsul, Sirup, Salep, atau Vitamin',
+        'stok.required' => 'Stok wajib di input',
+        'stok.integer' => 'Stok wajib berupa angka bulat',
+        'stok.min' => 'Stok tidak boleh kurang dari 0',
+        'harga.required' => 'Harga wajib di input',
+        'harga.integer' => 'Harga wajib berupa angka bulat',
+        'harga.min' => 'Harga minimal Rp 100',
+        'tanggal_expired.required' => 'Tanggal expired wajib di input',
+        'tanggal_expired.date' => 'Format tanggal tidak valid',
+    ]);
+
+    $apotek->update($validated);
+
+    return to_route('apotek.index')->with('success', 'Data Apotek berhasil diubah.');
+
     }
 
     /**

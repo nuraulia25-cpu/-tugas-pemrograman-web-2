@@ -33,6 +33,7 @@
                     <td>Rp. {{ $apotek->harga }}</td>
                     <td>{{ $apotek->tanggal_expired }}</td>
                     <td>
+                        <a class="btn btn-warning btn-sm" href="{{ route('apotek.edit', $apotek->id) }}">Edit</a>
                         <a class="btn btn-info btn-sm" href="{{ route('apotek.show', $apotek->id) }}">Show</a>
                     </td>
                 </tr>
