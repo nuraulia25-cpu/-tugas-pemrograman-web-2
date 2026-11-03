@@ -11,6 +11,7 @@ Route::post('/apotek', [ApotekController::class, 'store'])->name('apotek.store')
 Route::get('/apotek/{apotek}', [ApotekController::class, 'edit'])->name('apotek.edit');
 Route::put('/apotek/{apotek}', [ApotekController::class, 'update'])->name('apotek.update');
 Route::delete('/apotek/{apotek}', [ApotekController::class, 'destory'])->name('apotek.destory');
+Route::get('/apotek/{apotek}', [ApotekController::class, 'show'])->name('apotek.show');
 
 Route::get('/', function () {
     return to_route('apotek.index');

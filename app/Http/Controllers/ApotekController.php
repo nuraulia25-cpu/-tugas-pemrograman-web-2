@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apotek;
 use Illuminate\Http\Request;
 
 class ApotekController extends Controller
@@ -12,7 +13,8 @@ class ApotekController extends Controller
     public function index()
     {
         return view('apotek.index', [
-            'title' => 'Apotek'
+            'title' => 'Apotek',
+            'apoteks' => Apotek::latest()->get()
         ]);
     }
 
@@ -37,10 +39,11 @@ class ApotekController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Apotek $apotek)
     {
         return view('apotek.show', [
-            'title' => 'Detail Apotek'
+            'title' => 'Detail Apotek',
+            'apotek' => $apotek
         ]);
     }
 
