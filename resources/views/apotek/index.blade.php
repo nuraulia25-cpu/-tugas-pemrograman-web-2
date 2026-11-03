@@ -35,6 +35,14 @@
                     <td>
                         <a class="btn btn-warning btn-sm" href="{{ route('apotek.edit', $apotek->id) }}">Edit</a>
                         <a class="btn btn-info btn-sm" href="{{ route('apotek.show', $apotek->id) }}">Show</a>
+
+                        <form method="POST" action="{{ route('apotek.destroy', $apotek) }}" class="d-inline">
+                            @csrf
+                            @method('delete')
+
+                            <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

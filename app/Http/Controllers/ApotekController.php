@@ -118,8 +118,10 @@ class ApotekController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Apotek $apotek)
     {
-        //
+        $apotek->delete();
+
+        return to_route('apotek.index')->withSuccess('Data Berhasil Dihapus');
     }
 }
